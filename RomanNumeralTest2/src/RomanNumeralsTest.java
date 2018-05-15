@@ -21,5 +21,7 @@ public class RomanNumeralsTest {
     @Test
     public void six(){
         Assert.assertEquals("6", "VI", RomanNumerals.arabicToRoman(6));
+        Assert.assertEquals("7", "VII", RomanNumerals.arabicToRoman(7));
+        Assert.assertEquals("8", "VIII", RomanNumerals.arabicToRoman(8));
     }
 }
