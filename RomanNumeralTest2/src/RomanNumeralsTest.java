@@ -30,4 +30,9 @@ public class RomanNumeralsTest {
     public void nine(){
         Assert.assertEquals("9","IX", RomanNumerals.arabicToRoman(9));
     }
+
+    @Test
+    public void ten(){
+        Assert.assertEquals("10", "X", RomanNumerals.arabicToRoman(10));
+    }
 }

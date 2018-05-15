@@ -1,7 +1,7 @@
 public class RomanNumerals {
 
-    private static final int[]    VALUES  = {9, 5, 4, 1};
-    private static final String[] SYMBOLS = {"IX", "V", "IV", "I"};
+    private static final int[]    VALUES  = {10, 9, 5, 4, 1};
+    private static final String[] SYMBOLS = {"X", "IX", "V", "IV", "I"};
 
     public static String arabicToRoman(int arabic){
         StringBuilder result = new StringBuilder();
