@@ -2,20 +2,18 @@ public class RomanNumerals {
 
     public static String arabicToRoman(int arabic){
         StringBuilder result = new StringBuilder();
-        if(arabic == 6){
-            result.append("VI");
-        }
-        else if(arabic == 5){
+        int remains = arabic;
+        if(remains  >= 5){
             result.append("V");
+            remains -=5 ;
         }
-        else if(arabic == 4){
+        else if(remains  == 4){
             result.append("IV");
+            remains -=4 ;
         }
-        else {
-            for (int i = 0; i < arabic; i++) {
+            for (int i = 0; i < remains ; i++) {
                 result.append("I");
             }
-        }
             return result.toString();
     }
 }
