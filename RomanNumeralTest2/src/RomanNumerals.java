@@ -2,7 +2,10 @@ public class RomanNumerals {
 
     public static String arabicToRoman(int arabic){
         StringBuilder result = new StringBuilder();
-        if(arabic == 4){
+        if(arabic == 5){
+            result.append("V");
+        }
+        else if(arabic == 4){
             result.append("IV");
         }
         else {
