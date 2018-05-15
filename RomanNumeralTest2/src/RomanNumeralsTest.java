@@ -35,4 +35,9 @@ public class RomanNumeralsTest {
     public void ten(){
         Assert.assertEquals("10", "X", RomanNumerals.arabicToRoman(10));
     }
+
+    @Test
+    public void RN836(){
+        Assert.assertEquals("836", "DCCCXXXVI", RomanNumerals.arabicToRoman(836));
+    }
 }
