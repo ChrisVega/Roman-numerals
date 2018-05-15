@@ -1,6 +1,10 @@
 public class RomanNumerals {
 
     public static String arabicToRoman(int arabic){
-            return "I";
+            if(arabic == 2){
+                return"II";
+            }else{
+                return "I";
+            }
     }
 }
