@@ -5,24 +5,24 @@ import org.junit.Test;
 
 public class RomanNumeralsTest {
     @Test
-    public void oneTwoThree(){
+    public void oneTwoThree() {
         Assert.assertEquals("1", "I", RomanNumerals.arabicToRoman(1));
         Assert.assertEquals("2", "II", RomanNumerals.arabicToRoman(2));
         Assert.assertEquals("3", "III", RomanNumerals.arabicToRoman(3));
     }
 
     @Test
-    public void four(){
+    public void four() {
         Assert.assertEquals("4", "IV", RomanNumerals.arabicToRoman(4));
     }
 
     @Test
-    public void five(){
+    public void five() {
         Assert.assertEquals("5", "V", RomanNumerals.arabicToRoman(5));
     }
 
     @Test
-    public void sixSevenEight(){
+    public void sixSevenEight() {
         Assert.assertEquals("6", "VI", RomanNumerals.arabicToRoman(6));
         Assert.assertEquals("7", "VII", RomanNumerals.arabicToRoman(7));
         Assert.assertEquals("8", "VIII", RomanNumerals.arabicToRoman(8));
