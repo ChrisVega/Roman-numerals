@@ -39,7 +39,7 @@ public class RomanNumeralsTest {
     }
 
     @Test
-    public void RN836() {
+    public void RND836() {
         Assert.assertEquals("836", "DCCCXXXVI", RomanNumerals.arabicToRoman(836));
     }
 
