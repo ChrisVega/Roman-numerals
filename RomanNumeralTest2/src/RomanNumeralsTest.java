@@ -18,10 +18,16 @@ public class RomanNumeralsTest {
     public void five(){
         Assert.assertEquals("5", "V", RomanNumerals.arabicToRoman(5));
     }
+
     @Test
-    public void six(){
+    public void sixSevenEight(){
         Assert.assertEquals("6", "VI", RomanNumerals.arabicToRoman(6));
         Assert.assertEquals("7", "VII", RomanNumerals.arabicToRoman(7));
         Assert.assertEquals("8", "VIII", RomanNumerals.arabicToRoman(8));
+    }
+
+    @Test
+    public void nine(){
+        Assert.assertEquals("9","IX", RomanNumerals.arabicToRoman(9));
     }
 }
