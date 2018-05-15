@@ -8,4 +8,9 @@ public class RomanNumeralsTest {
         Assert.assertEquals("2", "II", RomanNumerals.arabicToRoman(2));
         Assert.assertEquals("3", "III", RomanNumerals.arabicToRoman(3));
     }
+
+    @Test
+    public void four(){
+        Assert.assertEquals("4", "IV", RomanNumerals.arabicToRoman(4));
+    }
 }
