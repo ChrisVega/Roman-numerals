@@ -10,46 +10,46 @@ public class RomanNumeralsTest {
     private String[] expected = {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"};
 
     @Test
-    public void oneTwoThree() {
+    public void testOneTwoThree() {
         Assert.assertEquals("1", "I", RomanNumerals.arabicToRoman(1));
         Assert.assertEquals("2", "II", RomanNumerals.arabicToRoman(2));
         Assert.assertEquals("3", "III", RomanNumerals.arabicToRoman(3));
     }
 
     @Test
-    public void four() {
+    public void testFour() {
         Assert.assertEquals("4", "IV", RomanNumerals.arabicToRoman(4));
     }
 
     @Test
-    public void five() {
+    public void testFive() {
         Assert.assertEquals("5", "V", RomanNumerals.arabicToRoman(5));
     }
 
     @Test
-    public void sixSevenEight() {
+    public void testSixSevenEight() {
         Assert.assertEquals("6", "VI", RomanNumerals.arabicToRoman(6));
         Assert.assertEquals("7", "VII", RomanNumerals.arabicToRoman(7));
         Assert.assertEquals("8", "VIII", RomanNumerals.arabicToRoman(8));
     }
 
     @Test
-    public void nine() {
+    public void testNine() {
         Assert.assertEquals("9", "IX", RomanNumerals.arabicToRoman(9));
     }
 
     @Test
-    public void ten() {
+    public void testTen() {
         Assert.assertEquals("10", "X", RomanNumerals.arabicToRoman(10));
     }
 
     @Test
-    public void RND836() {
+    public void testRandomNumber836() {
         Assert.assertEquals("836", "DCCCXXXVI", RomanNumerals.arabicToRoman(836));
     }
 
     @Test
-    public void romanToArabic() {
+    public void testRomanToArabic() {
         Assert.assertEquals("I",1, RomanNumerals.romanToArabic("I"));
         Assert.assertEquals("III",3, RomanNumerals.romanToArabic("III"));
         Assert.assertEquals("IX",9, RomanNumerals.romanToArabic("IX"));
@@ -57,15 +57,15 @@ public class RomanNumeralsTest {
     }
 
     @Test
-    public void sortTest(){
+    public void testSort(){
         String roman[] = new String[testCaseArabic.length];
         int i = 0;
         for(int arabic: testCaseArabic){
             roman[i] = RomanNumerals.arabicToRoman(arabic);
             i++;
         }
-        Assert.assertArrayEquals(expected, RomanNumerals.quickSort(0,(roman.length-1) ,roman));
-        System.out.println(Arrays.toString(RomanNumerals.quickSort(0,(roman.length-1) ,roman)));
+        Assert.assertArrayEquals(expected, RomanNumerals.sort(0,(roman.length-1) ,roman));
+        System.out.println(Arrays.toString(RomanNumerals.sort(0,(roman.length-1) ,roman)));
         Assert.assertArrayEquals(expected, RomanNumerals.sortOneLoop(roman));
         System.out.println(Arrays.toString(RomanNumerals.sortOneLoop(roman)));
     }

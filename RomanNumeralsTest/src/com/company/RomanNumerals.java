@@ -1,6 +1,8 @@
 package com.company;
 
-import java.util.Arrays;
+/*
+Trying to keep methods between 4 - 15 lines long with the exception of the one loop sort
+ */
 
 public class RomanNumerals {
 
@@ -8,8 +10,8 @@ public class RomanNumerals {
     private static final String[] SYMBOLS = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
 
     public static String arabicToRoman(int arabic) {
-        StringBuilder result = new StringBuilder();
-        int remaining = arabic;
+        StringBuilder result = new StringBuilder();int remaining = arabic;
+
         for(int i = 0; i<VALUES.length; i++){
             remaining = appendRomanNumerals(remaining, VALUES[i],SYMBOLS[i], result);
         }
@@ -17,8 +19,8 @@ public class RomanNumerals {
     }
 
     public static int romanToArabic(String roman){
-        int result = 0;
-        int index;
+        int result = 0, index;
+
         while(!roman.equals("")){
             index = appendArabic(roman);
             result += VALUES[index];
@@ -27,19 +29,17 @@ public class RomanNumerals {
         return result;
     }
 
-    public static String[] quickSort(int start, int end, String[] roman){
+    public static String[] sort(int start, int end, String[] roman){
         if(start<end){
-            int partitionIndex = partition(start, end, roman);
-
-            quickSort(start, partitionIndex-1, roman);
-            quickSort(partitionIndex+1, end, roman);
+            int partitionIndex = quickSortPartition(start, end, roman);
+            sort(start, partitionIndex-1, roman);
+            sort(partitionIndex+1, end, roman);
         }
         return roman;
     }
 
-    public static String[] sortOneLoop(String[] roman){ //Bubble sort = ew
-        int length = roman.length;
-        boolean valuesWereSwitched = false;
+    public static String[] sortOneLoop(String[] roman){ //if(bubbleSort) return ew;
+        int length = roman.length; boolean valuesWereSwitched = false;
         for(int i = 0; i<length; i++){
             if(i+1 == length){
                 if(!valuesWereSwitched){
@@ -49,9 +49,7 @@ public class RomanNumerals {
                 }
             }
             if(romanToArabic(roman[i]) > romanToArabic(roman[i+1])){
-                String temp = roman[i];
-                roman[i] = roman[i+1];
-                roman[i+1] = temp;
+                swap(i, i+1, roman);
                 valuesWereSwitched = true;
             }
         }
@@ -76,22 +74,23 @@ public class RomanNumerals {
         return -1;
     }
 
-    private static int partition(int start, int end, String[] array){
+    private static int quickSortPartition(int start, int end, String[] array){
         int pivot = romanToArabic(array[end]);
-        String temp;
         int index = start-1;
         for(int i = start; i<end; i++){
             if(romanToArabic(array[i]) <= pivot){
                 index++;
-                temp = array[index];
-                array[index] = array[i];
-                array[i] = temp;
+                swap(index, i, array);
             }
         }
-        temp = array[index+1];
-        array[index+1] = array[end];
-        array[end] = temp;
-
+        swap(index+1, end, array);
         return index+1;
+    }
+
+    private static void swap (int indexFirst, int indexSecond, String[] array){
+        String temp;
+        temp = array[indexFirst];
+        array[indexFirst] = array[indexSecond];
+        array[indexSecond] = temp;
     }
 }
