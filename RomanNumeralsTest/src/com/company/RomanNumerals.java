@@ -1,7 +1,9 @@
 package com.company;
 
 /*
-Trying to keep methods between 4 - 15 lines long with the exception of the one loop sort
+For roman numerals 4000 and above you would use a line over that numeral to indicate that it is 1000 times larger.
+Over line unicode doesn't seem to be supported for console output so a numeral in between '' would indicate times
+1000 instead. Ex 4000 == 'IV'
  */
 
 public class RomanNumerals {
@@ -11,7 +13,9 @@ public class RomanNumerals {
 
     public static String arabicToRoman(int arabic) {
         StringBuilder result = new StringBuilder();int remaining = arabic;
-
+        if(arabic>3999){
+            result.append("'");
+        }
         for(int i = 0; i<VALUES.length; i++){
             remaining = appendRomanNumerals(remaining, VALUES[i],SYMBOLS[i], result);
         }
@@ -19,22 +23,24 @@ public class RomanNumerals {
     }
 
     public static int romanToArabic(String roman){
-        int result = 0, index;
-
-        while(!roman.equals("")){
-            index = appendArabic(roman);
-            result += VALUES[index];
-            roman = roman.replaceFirst(SYMBOLS[index], "");
+        int result = 0;
+        if (roman.contains("'")) {
+            String[] split = roman.split("'");
+            result = 1000 * romanToArabic(split[1]);
+            roman = split[2];
+        }
+        for(int i = 0; i<SYMBOLS.length; i++){
+            while(roman.startsWith(SYMBOLS[i])){
+                result += VALUES[i];
+                roman = roman.replaceFirst(SYMBOLS[i], "");
+            }
         }
         return result;
     }
 
-    public static String[] sort(int start, int end, String[] roman){
-        if(start<end){
-            int partitionIndex = quickSortPartition(start, end, roman);
-            sort(start, partitionIndex-1, roman);
-            sort(partitionIndex+1, end, roman);
-        }
+    public static String[] sort(String[] roman){
+        int start = 0; int end = roman.length-1;
+        quickSort(start, end, roman);
         return roman;
     }
 
@@ -56,22 +62,48 @@ public class RomanNumerals {
         return roman;
     }
 
-    private static int appendRomanNumerals(int arabic, int value, String romanDigits, StringBuilder builder ){
+    private static int appendRomanNumerals(int arabic, int value, String romanDigits, StringBuilder builder){
         int result = arabic;
-        while(result >=value){
-            builder.append(romanDigits);
-            result -= value;
+        while(result >= value) {
+            if (result > 3999) {
+                result = appendRomanForValuesOver3999(result, builder);
+            } else {
+                builder.append(romanDigits);
+                result -= value;
+            }
         }
         return result;
     }
 
-    private static int appendArabic(String roman){
-        for(int i = 0; i<SYMBOLS.length; i++){
-            if(roman.startsWith(SYMBOLS[i])){
-                return i;
-            }
+    private static int appendRomanForValuesOver3999(int result, StringBuilder builder){
+        int thousandsPortion = getThousandsPortion(result);
+        int index = 0;
+            while(VALUES[++index] > thousandsPortion);
+        result -= VALUES[index]*1000;
+        builder.append(SYMBOLS[index]);
+        if(result < 4000) {
+            builder.append("'");
         }
-        return -1;
+        return result;
+    }
+
+    private static int getThousandsPortion(int result) {
+        int thousandsPortion;
+        if(result >= 10000){
+            thousandsPortion = (result / 10000)*10;
+        } else {
+            thousandsPortion = (result / 1000);
+        }
+        return thousandsPortion;
+    }
+
+    private static String[] quickSort(int start, int end, String[] roman){
+        if(start<end){
+            int partitionIndex = quickSortPartition(start, end, roman);
+            quickSort(start, partitionIndex-1, roman);
+            quickSort(partitionIndex+1, end, roman);
+        }
+        return roman;
     }
 
     private static int quickSortPartition(int start, int end, String[] array){
